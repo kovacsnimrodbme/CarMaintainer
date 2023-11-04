@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application{
+    mainClassName = 'main.java.org.example.Main'
+}
+
+sourceSets{
+    main{
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jar{
+    manifest{
+        attributes "Main-Class": "main.java.org.example.Main"
+    }
+}
+
+run{
+    standardInput = System.in
+}
