@@ -4,7 +4,7 @@ plugins {
 }
 
 application{
-    mainClassName = 'main.java.org.example.Main'
+    mainClassName = 'main.java.org.Main'
 }
 
 sourceSets{
@@ -15,7 +15,7 @@ sourceSets{
     }
 }
 
-group 'org.example'
+group 'org'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -24,10 +24,10 @@ repositories {
 
 jar{
     manifest{
-        attributes "Main-Class": "main.java.org.example.Main"
+        attributes "Main-Class": "main.java.org.Main"
     }
 }
 
-run{
-    standardInput = System.in
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
