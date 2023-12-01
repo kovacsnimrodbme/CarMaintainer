@@ -8,14 +8,19 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import com.github.lgooddatepicker.components.*;
 
+/**
+ * This class is responsible for the graphical display of the program functionality.
+ */
 public class Panels {
+    /**
+     * This is the function to generate the main menu.
+     *
+     * @return A JPanel loaded with the components.
+     */
     public static JPanel menu() {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(610, 600));
@@ -24,12 +29,17 @@ public class Panels {
         return panel;
     }
 
+    /**
+     * This is the function to generate the service adding function.
+     *
+     * @param data The data structure with the data of the cars.
+     * @return A JPanel loaded with the components.
+     */
     public static JPanel addService(Data data) {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(610, 600));
         panel.setLocation(190, 0);
         panel.setBorder(new EmptyBorder(10, 270, 50, 80));
-
         Font font = new Font("Agency Fb", Font.BOLD, 20);
 
         if (data.getCarList().isEmpty()) {
@@ -171,6 +181,12 @@ public class Panels {
         return panel;
     }
 
+    /**
+     * This is the function to generate the service history display.
+     *
+     * @param data The data structure with the data of the cars.
+     * @return A JPanel loaded with the components.
+     */
     public static JPanel seeService(Data data) {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(610, 600));
@@ -199,7 +215,7 @@ public class Panels {
             JComboBox<String> selector = new JComboBox<>(data.getCarListVector());
             selector.setFont(font);
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"etwas", "frisch"}, 0);
+            DefaultTableModel model = new DefaultTableModel(new String[]{"", ""}, 0);
             JTable serviceTable = new JTable(model);
             serviceTable.setTableHeader(null);
             serviceTable.setDefaultEditor(Object.class, null);
@@ -239,6 +255,12 @@ public class Panels {
         return panel;
     }
 
+    /**
+     * This is the function to generate the car adding feature.
+     *
+     * @param data The data structure with the data of the cars.
+     * @return A JPanel loaded with the components.
+     */
     public static JPanel addCar(Data data) {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(610, 600));
@@ -296,6 +318,12 @@ public class Panels {
         return panel;
     }
 
+    /**
+     * This is the function to generate the car deleting feature.
+     *
+     * @param data The data structure with the data of the cars.
+     * @return A JPanel loaded with the components.
+     */
     public static JPanel delCar(Data data) {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(610, 600));

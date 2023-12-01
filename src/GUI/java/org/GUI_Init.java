@@ -9,10 +9,25 @@ import java.io.IOException;
 import IO.java.org.Data;
 import IO.java.org.FileIO;
 
+/**
+ * The class for the frame, and to change the panels inside it.
+ */
 public class GUI_Init {
+    /**
+     * The frame of the application.
+     */
     private final JFrame frame;
+    /**
+     * The data structure for the program.
+     */
     private final Data data;
 
+    /**
+     * The constructor for the class.
+     * It's sets the basics for the frame.
+     *
+     * @param data The data structure with the data of the cars, the program works with this afterward.
+     */
     public GUI_Init(Data data) {
         this.frame = new JFrame("CarMaintainer");
         this.data = data;
@@ -46,18 +61,36 @@ public class GUI_Init {
         }
     }
 
+    /**
+     * This function makes the frame visible (starts the program).
+     */
     public void run() {
         frame.setVisible(true);
     }
 
+    /**
+     * A getter for the data field.
+     *
+     * @return It returns the private field data.
+     */
     public Data getData() {
         return data;
     }
 
+    /**
+     * A getter for the frame.
+     *
+     * @return It returns the private field frame.
+     */
     public JFrame getFrame() {
         return frame;
     }
 
+    /**
+     * This function sets the visible panel for the frame.
+     *
+     * @param panel This panel will be displayed.
+     */
     public void setPanel(JPanel panel) {
         frame.getContentPane().removeAll();
         frame.add(new Menu(this));

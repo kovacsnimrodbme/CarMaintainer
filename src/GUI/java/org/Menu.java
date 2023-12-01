@@ -8,19 +8,51 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This class is responsible for the menu at the left, and to call the functions of the program.
+ */
 public class Menu extends javax.swing.JPanel {
-    private final JPanel menuPanel0 = new JPanel();
-    private final JPanel menuPanel1 = new JPanel();
-    private final JPanel menuPanel2 = new JPanel();
-    private final JPanel menuPanel3 = new JPanel();
-    private final JPanel menuPanel4 = new JPanel();
+    /**
+     * An invisible panel, to make clickable menu at the left.
+     */
+    private final JPanel menuPanel0;
+    /**
+     * An invisible panel, to make clickable menu at the left.
+     */
+    private final JPanel menuPanel1;
+    /**
+     * An invisible panel, to make clickable menu at the left.
+     */
+    private final JPanel menuPanel2;
+    /**
+     * An invisible panel, to make clickable menu at the left.
+     */
+    private final JPanel menuPanel3;
+    /**
+     * An invisible panel, to make clickable menu at the left.
+     */
+    private final JPanel menuPanel4;
+    /**
+     * The field of the GUI_Init, this way the data is accessible in other functions.
+     */
     private final GUI_Init gui;
 
+    /**
+     * The constructor for the class.
+     *
+     * @param gui This field is set by outside.
+     */
     public Menu(GUI_Init gui) {
         this.gui = gui;
         setOpaque(false);
         setSize(190, 600);
         setLocation(0, 0);
+
+        menuPanel0 = new JPanel();
+        menuPanel1 = new JPanel();
+        menuPanel2 = new JPanel();
+        menuPanel3 = new JPanel();
+        menuPanel4 = new JPanel();
 
         menuPanel0.setSize(new Dimension(190, 90));
         menuPanel1.setSize(new Dimension(190, 70));
@@ -82,6 +114,11 @@ public class Menu extends javax.swing.JPanel {
         gui.getFrame().add(menuPanel4);
     }
 
+    /**
+     * The function for the graphics of the menu.
+     *
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g) {
 
