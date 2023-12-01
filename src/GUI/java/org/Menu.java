@@ -9,33 +9,37 @@ import java.io.File;
 import java.io.IOException;
 
 public class Menu extends javax.swing.JPanel {
-    private JPanel menuPanel0 = new JPanel();
-    private JPanel menuPanel1 = new JPanel();
-    private JPanel menuPanel2 = new JPanel();
-    private JPanel menuPanel3 = new JPanel();
-    private JPanel menuPanel4 = new JPanel();
-    private GUI_Init gui;
+    private final JPanel menuPanel0 = new JPanel();
+    private final JPanel menuPanel1 = new JPanel();
+    private final JPanel menuPanel2 = new JPanel();
+    private final JPanel menuPanel3 = new JPanel();
+    private final JPanel menuPanel4 = new JPanel();
+    private final GUI_Init gui;
 
     public Menu(GUI_Init gui) {
         this.gui = gui;
         setOpaque(false);
         setSize(190, 600);
         setLocation(0, 0);
+
         menuPanel0.setSize(new Dimension(190, 90));
         menuPanel1.setSize(new Dimension(190, 70));
         menuPanel2.setSize(new Dimension(190, 70));
         menuPanel3.setSize(new Dimension(190, 70));
         menuPanel4.setSize(new Dimension(190, 70));
+
         menuPanel0.setLocation(0, 0);
         menuPanel1.setLocation(0, 120);
         menuPanel2.setLocation(0, 190);
         menuPanel3.setLocation(0, 260);
         menuPanel4.setLocation(0, 330);
+
         menuPanel0.setOpaque(false);
         menuPanel1.setOpaque(false);
         menuPanel2.setOpaque(false);
         menuPanel3.setOpaque(false);
         menuPanel4.setOpaque(false);
+
         menuPanel0.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -46,40 +50,41 @@ public class Menu extends javax.swing.JPanel {
         menuPanel1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                gui.setPanel(Panels.addService());
+                gui.setPanel(Panels.addService(gui.getData()));
                 super.mouseClicked(e);
             }
         });
         menuPanel2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                gui.setPanel(Panels.seeService());
+                gui.setPanel(Panels.seeService(gui.getData()));
                 super.mousePressed(e);
             }
         });
         menuPanel3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                gui.setPanel(Panels.addCar());
+                gui.setPanel(Panels.addCar(gui.getData()));
                 super.mousePressed(e);
             }
         });
         menuPanel4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                gui.setPanel(Panels.delCar());
+                gui.setPanel(Panels.delCar(gui.getData()));
                 super.mousePressed(e);
             }
         });
-        gui.frame.add(menuPanel0);
-        gui.frame.add(menuPanel1);
-        gui.frame.add(menuPanel2);
-        gui.frame.add(menuPanel3);
-        gui.frame.add(menuPanel4);
+        gui.getFrame().add(menuPanel0);
+        gui.getFrame().add(menuPanel1);
+        gui.getFrame().add(menuPanel2);
+        gui.getFrame().add(menuPanel3);
+        gui.getFrame().add(menuPanel4);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         GradientPaint gr = new GradientPaint(0, 0, Color.decode("#00F260"), 0, getHeight(), Color.decode("#0575E6"));
@@ -91,15 +96,18 @@ public class Menu extends javax.swing.JPanel {
         graphics2D.drawString("CarMaintainer", 15, 50);
 
         try {
-            Image image = ImageIO.read(new File("repair.png")).getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-            Image image2 = ImageIO.read(new File("ser.png")).getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-            Image image3 = ImageIO.read(new File("new.png")).getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-            Image image4 = ImageIO.read(new File("del.png")).getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+            Image image = ImageIO.read(new File("icons/repair.png")).getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+            Image image2 = ImageIO.read(new File("icons/ser.png")).getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+            Image image3 = ImageIO.read(new File("icons/new.png")).getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+            Image image4 = ImageIO.read(new File("icons/del.png")).getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+
             graphics2D.drawImage(image, 10, 130, this);
             graphics2D.drawImage(image2, 10, 200, this);
             graphics2D.drawImage(image3, 10, 270, this);
             graphics2D.drawImage(image4, 10, 340, this);
+
             graphics2D.setFont(new Font("Agency Fb", Font.BOLD, 24));
+
             graphics2D.drawString("Add service", 65, 160);
             graphics2D.drawString("Services", 65, 230);
             graphics2D.drawString("Add new car", 65, 300);
@@ -107,7 +115,6 @@ public class Menu extends javax.swing.JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         super.paintComponent(g);
     }
 }

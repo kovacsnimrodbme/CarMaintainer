@@ -30,4 +30,5 @@ jar{
 
 dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation group: 'com.github.lgooddatepicker', name: 'LGoodDatePicker', version: '11.2.1'
 }

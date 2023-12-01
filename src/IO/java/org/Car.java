@@ -5,22 +5,40 @@ import java.util.ArrayList;
 public class Car {
     private final String make;
     private final String type;
-    private final String engCode;
     private final String vin;
-    private ArrayList<Service> services;
+    private final ArrayList<Service> services;
 
-    Car(String make, String type, String engCode, String vin) {
-        this.make = make;
-        this.type = type;
-        this.engCode = engCode;
-        this.vin = vin;
+    public Car() {
+        this.make = "def";
+        this.type = "def";
+        this.vin = "def";
+        this.services = new ArrayList<>();
     }
 
-    public ArrayList<Service> getServices(){
+    public Car(String make, String type, String vin) {
+        this.make = make;
+        this.type = type;
+        this.vin = vin;
+        this.services = new ArrayList<>();
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getVin() {
+        return vin;
+    }
+
+    public ArrayList<Service> getServices() {
         return services;
     }
 
-    public void addService(Service newService){
+    public void addService(Service newService) {
         getServices().add(newService);
     }
 }
