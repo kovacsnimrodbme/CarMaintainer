@@ -103,7 +103,7 @@ public class Menu extends javax.swing.JPanel {
         menuPanel4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                gui.setPanel(Panels.delCar(gui.getData()));
+                gui.setPanel(Panels.delCar(gui));
                 super.mousePressed(e);
             }
         });

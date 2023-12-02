@@ -4,10 +4,14 @@ import IO.java.org.Car;
 import IO.java.org.Data;
 import IO.java.org.Service;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.github.lgooddatepicker.components.*;
@@ -26,6 +30,13 @@ public class Panels {
         panel.setSize(new Dimension(610, 600));
         panel.setLocation(190, 0);
         panel.setBorder(new EmptyBorder(0, 200, 0, 0));
+        try {
+            BufferedImage pic = ImageIO.read(new File("icons/meme.png"));
+            JLabel picLabel = new JLabel(new ImageIcon(pic));
+            panel.add(picLabel);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return panel;
     }
 
@@ -321,10 +332,10 @@ public class Panels {
     /**
      * This is the function to generate the car deleting feature.
      *
-     * @param data The data structure with the data of the cars.
+     * @param gui The gui.
      * @return A JPanel loaded with the components.
      */
-    public static JPanel delCar(Data data) {
+    public static JPanel delCar(GUI_Init gui) {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(610, 600));
         panel.setLocation(190, 0);
@@ -332,14 +343,14 @@ public class Panels {
 
         Font font = new Font("Agency Fb", Font.BOLD, 20);
 
-        if (data.getCarList().isEmpty()) {
+        if (gui.getData().getCarList().isEmpty()) {
             panel.setLayout(new FlowLayout());
             JLabel ld = new JLabel("There isn't any car in the program!");
             ld.setFont(font);
             panel.add(ld);
         } else {
             panel.setLayout(new GridLayout(6, 2, 10, 10));
-            final JComboBox[] selector = new JComboBox[]{new JComboBox<>(data.getCarListVector())};
+            final JComboBox[] selector = new JComboBox[]{new JComboBox<>(gui.getData().getCarListVector())};
             selector[0].setFont(font);
 
             final Car[] car = {new Car()};
@@ -378,7 +389,7 @@ public class Panels {
             b1.setFont(font);
 
             selector[0].addActionListener(e -> {
-                car[0] = data.getCarByName((String) selector[0].getSelectedItem());
+                car[0] = gui.getData().getCarByName((String) selector[0].getSelectedItem());
                 l11.setText(car[0].getMake());
                 l21.setText(car[0].getType());
                 l31.setText(car[0].getVin());
@@ -390,15 +401,17 @@ public class Panels {
                 if (JOptionPane.showConfirmDialog(new JFrame(),
                         "Are you sure?", "Delete the car", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     if (selector[0].getSelectedIndex() == 0) {
-                        selector[0].setSelectedIndex(1);
-                        selector[0].removeItemAt(0);
+                        if(selector[0].getItemCount()!=1){
+                            selector[0].setSelectedIndex(1);
+                            selector[0].removeItemAt(0);
+                        }
                     } else {
                         int j = selector[0].getSelectedIndex();
                         selector[0].setSelectedIndex(0);
                         selector[0].removeItemAt(j);
                     }
-                    data.deleteCar(carToDel);
-                    panel.setVisible(true);
+                    gui.getData().deleteCar(carToDel);
+                    gui.setPanel(delCar(gui));
                 }
             });
 
