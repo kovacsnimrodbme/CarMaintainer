@@ -29,10 +29,11 @@ public class Panels {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(610, 600));
         panel.setLocation(190, 0);
-        panel.setBorder(new EmptyBorder(0, 200, 0, 0));
+        panel.setBorder(new EmptyBorder(10, 200, 0, 0));
         try {
             BufferedImage pic = ImageIO.read(new File("icons/meme.png"));
             JLabel picLabel = new JLabel(new ImageIcon(pic));
+            picLabel.setHorizontalAlignment(JLabel.CENTER);
             panel.add(picLabel);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -276,8 +277,14 @@ public class Panels {
         JPanel panel = new JPanel();
         panel.setSize(new Dimension(610, 600));
         panel.setLocation(190, 0);
-        panel.setLayout(new GridLayout(5, 2, 10, 10));
-        panel.setBorder(new EmptyBorder(10, 200, 10, 10));
+        panel.setBorder(new EmptyBorder(10, 200, 100, 10));
+
+        GridBagLayout layout = new GridBagLayout();
+        panel.setLayout(layout);
+
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(20, 20, 20, 20);
 
         Font font = new Font("Agency Fb", Font.BOLD, 20);
 
@@ -317,15 +324,34 @@ public class Panels {
             }
         });
 
-        panel.add(l);
-        panel.add(new JLabel());
-        panel.add(l1);
-        panel.add(t1);
-        panel.add(l2);
-        panel.add(t2);
-        panel.add(l3);
-        panel.add(t4);
-        panel.add(b1);
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 2;
+        panel.add(l, c);
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        panel.add(l1, c);
+        c.gridx = 1;
+        c.gridy = 1;
+        panel.add(t1, c);
+        c.gridx = 0;
+        c.gridy = 2;
+        panel.add(l2, c);
+        c.gridx = 1;
+        c.gridy = 2;
+        panel.add(t2, c);
+        c.gridx = 0;
+        c.gridy = 3;
+        panel.add(l3, c);
+        c.gridx = 1;
+        c.gridy = 3;
+        panel.add(t4, c);
+        c.gridx = 0;
+        c.gridy = 4;
+        c.gridwidth = 2;
+        panel.add(b1, c);
+
         return panel;
     }
 
@@ -349,7 +375,13 @@ public class Panels {
             ld.setFont(font);
             panel.add(ld);
         } else {
-            panel.setLayout(new GridLayout(6, 2, 10, 10));
+            GridBagLayout layout = new GridBagLayout();
+            panel.setLayout(layout);
+
+            GridBagConstraints c = new GridBagConstraints();
+            c.fill = GridBagConstraints.BOTH;
+            c.insets = new Insets(20, 20, 20, 20);
+
             final JComboBox[] selector = new JComboBox[]{new JComboBox<>(gui.getData().getCarListVector())};
             selector[0].setFont(font);
 
@@ -401,7 +433,7 @@ public class Panels {
                 if (JOptionPane.showConfirmDialog(new JFrame(),
                         "Are you sure?", "Delete the car", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     if (selector[0].getSelectedIndex() == 0) {
-                        if(selector[0].getItemCount()!=1){
+                        if (selector[0].getItemCount() != 1) {
                             selector[0].setSelectedIndex(1);
                             selector[0].removeItemAt(0);
                         }
@@ -415,17 +447,42 @@ public class Panels {
                 }
             });
 
-            panel.add(l);
-            panel.add(selector[0]);
-            panel.add(l1);
-            panel.add(l11);
-            panel.add(l2);
-            panel.add(l21);
-            panel.add(l3);
-            panel.add(l31);
-            panel.add(l4);
-            panel.add(l41);
-            panel.add(b1);
+            c.gridx = 0;
+            c.gridy = 0;
+            c.gridwidth = 2;
+            panel.add(l,c);
+            c.gridx = 0;
+            c.gridy = 1;
+            panel.add(selector[0],c);
+            c.gridx = 0;
+            c.gridy = 2;
+            c.gridwidth = 1;
+            panel.add(l1,c);
+            c.gridx = 1;
+            c.gridy = 2;
+            panel.add(l11,c);
+            c.gridx = 0;
+            c.gridy = 3;
+            panel.add(l2,c);
+            c.gridx = 1;
+            c.gridy = 3;
+            panel.add(l21,c);
+            c.gridx = 0;
+            c.gridy = 4;
+            panel.add(l3,c);
+            c.gridx = 1;
+            c.gridy = 4;
+            panel.add(l31,c);
+            c.gridx = 0;
+            c.gridy = 5;
+            panel.add(l4,c);
+            c.gridx = 1;
+            c.gridy = 5;
+            panel.add(l41,c);
+            c.gridx = 0;
+            c.gridy = 6;
+            c.gridwidth = 2;
+            panel.add(b1,c);
         }
         return panel;
     }
